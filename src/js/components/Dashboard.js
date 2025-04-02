@@ -13,18 +13,14 @@ function Dashboard({ user }) {
   // URLを送信する関数
   const sendUrl = async (url) => {
     try {
-      // URLを送信
-      // 実際の実装の場合はこちらを使用：
-      // await sendUrlToWebsite(url);
-      
-      // デモ用にURLを新しいウィンドウで開く
+      // テスト環境用：新しいウィンドウでGoogle検索を開く
       openUrlInNewWindow(url);
       
       console.log(`URLを送信: ${url}`);
       
       // 成功メッセージを表示
       setMessage({
-        text: `URLを送信しました: ${url}`,
+        text: `検索を開きました: ${url}`,
         type: 'success'
       });
       

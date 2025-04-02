@@ -62,6 +62,7 @@ ProtoControllerは、登録済みのURLを簡単なボタン操作で送信で�
      appId: "YOUR_APP_ID"
    };
    ```
+   注意: `firebase.js` ファイルは機密情報を含むため、「.gitignore」に追加されています。リポジトリをクローンした場合は、`src/js/firebase.example.js` をコピーして `firebase.js` を作成し、実際の値を設定してください。
 
 5. URLを設定します
    - `src/js/config/urls.js` 内の `userDefinedUrls` を編集して、使用したいURLを設定します
@@ -125,6 +126,42 @@ export const userDefinedUrls = [
 ### スタイルのカスタマイズ
 
 `src/css/index.css` を編集してスタイルをカスタマイズできます。
+
+## セキュリティについて
+
+### Firebase APIキーの保護
+
+- FirebaseのAPIキーは、ブラウザクライアントで使用されるため、完全に秘密にすることはできません。
+- しかし、Firebaseコンソールでセキュリティルールを設定し、認証されたユーザーのみが特定の操作を実行できるように制限することを強くお勧めします。
+- Firebaseコンソールの「Authentication > Sign-in method」で、「承認済みドメイン」を設定して、特定のドメインからのリクエストのみを許可するようにしてください。
+
+### Firebase認証の安全な使用
+
+- パスワードの強度要件を設定することを検討してください。
+- 本番環境では、メールアドレス確認を有効にすることを検討してください。
+- ブルートフォース攻撃を防ぐために、ログイン試行回数の制限を設定してください。
+
+### 環境変数の使用
+
+本番環境では、Firebaseの設定情報を環境変数として管理することを検討してください。たとえば、`.env`ファイルを使用して、以下のように環境変数を設定できます：
+
+```
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+...
+```
+
+そして、`firebase.js`ファイルを以下のように変更します：
+
+```javascript
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  ...
+};
+```
 
 ## ライセンス
 

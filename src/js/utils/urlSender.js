@@ -48,9 +48,15 @@ export const sendUrlToWebsite = async (url) => {
 
 /**
  * 指定されたURLを新しいウィンドウでテスト的に開く関数
- * （実際の送信処理が実装されるまでのテスト用）
- * @param {string} url - 開くURL
+ * （Google検索用に修正）
+ * @param {string} query - 検索クエリ
  */
-export const openUrlInNewWindow = (url) => {
-  window.open(url, '_blank');
+export const openUrlInNewWindow = (query) => {
+  // Google検索URLを作成
+  const params = new URLSearchParams();
+  params.append('q', query);
+  const googleSearchUrl = `${targetWebsiteUrl}?${params.toString()}`;
+  
+  // 新しいタブで開く
+  window.open(googleSearchUrl, '_blank');
 };

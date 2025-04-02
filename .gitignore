@@ -29,3 +29,10 @@ yarn-error.log*
 # OS固有のファイル
 .DS_Store
 Thumbs.db
+
+# Firebase設定
+src/js/firebase.js
+
+# Firebaseキャッシュ
+.firebase/
+
