@@ -1,0 +1,6 @@
+[project]
+name = "ProtoController"
+description = "プロトタイプコントローラープロジェクト"
+
+[repository]
+type = "git"
